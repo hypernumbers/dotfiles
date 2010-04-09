@@ -1,0 +1,89 @@
+
+* Flat Stuff
+** DONE Plug adapter
+** DONE Sheets
+** DONE Bin
+** Toothpaste
+** DONE Tin Foil
+** DONE Knife / Fork
+** DONE Monitor
+** Shelves
+** Curtains / Blinds
+** DONE Shampoo
+** Washing Machine
+** Grill
+** Gas Eating Money
+* Projects
+** erldocs.com
+*** Easier Builds
+*** User Comments
+*** Update Downloadable Version
+** erlangotp.com
+*** Design / Structure / Planning
+** Chat Client
+*** Come up with a name
+*** Save Visited Rooms
+*** Enter / Leave message + User List
+*** More Stable Connection
+** Make Rescuetime work on ubuntu
+** Blog 
+*** Design
+*** Write
+**** Book Reviews
+**** How I see the cloud
+**** Erlang Coding Guidelines
+**** Javascript Coding Guidelines
+**** Erlang Tools (erlang mode / distel / flymake)
+**** What more is needed to build web applications
+** Games
+*** Pacman
+
+* Projects I wont do
+** Personal Home Page
+** Erlang Pastebin
+* Films
+** Casablanca
+** It's a Wonderful Life (1946)
+** Once Upon a time in the west
+** Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb (1964)
+** Sunset Blvd. (1950)
+** Avatar (2009)
+** North by Northwest (1959)
+** Taxi Driver (1976)
+** 	Vertigo (1958)
+** Lawrence of Arabia (1962)
+** Le fabuleux destin d'Amélie Poulain (2001)
+** The Shining (1980)
+** Paths of Glory (1957)
+** The Pianist (2002)
+** M (1931)
+** Double Indemnity (1944)
+** Chinatown (1974)
+** The Third Man (1949)
+** The Treasure of the Sierra Madre (1948)
+** Das Boot (1981)
+** City Lights (1931)
+** La vita è bella (1997)
+** Some Like It Hot (1959)
+** The Maltese Falcon (1941)
+** Modern Times (1936)
+** Amadeus (1984)
+** Rashômon (1950)
+** Nuovo cinema Paradiso (1988)
+** All About Eve (1950)
+** Once Upon a Time in America (1984)
+** The Elephant Man (1980)
+** Metropolis (1927)
+** Rebecca (1940)
+** The Great Dictator (1940)
+** The Apartment (1960)
+** The Sting (1973)
+** Ladri di biciclette (1948)
+** Mr. Smith Goes to Washington (1939)
+** Unforgiven (1992)
+** On the Waterfront (1954)
+** Touch of Evil (1958)
+** Fargo (1996)
+** Det sjunde inseglet (1957)
+** Strangers on a Train (1951)
+** Per qualche dollaro in più (1965)

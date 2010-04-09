@@ -1,0 +1,8 @@
+POST /u/dale/test/ HTTP/1.1
+Host: 127.0.0.1:9000
+User-Agent: Twiddle
+Accept: application/json, text/javascript, */*
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Cookie: uid=3c01ccd67efaf510; auth="1269730293:dale:46af73354ed7da0c8c96148236d88461"
+
+{"saveview":{"name":"_u/dale/test", "tpl":"<div><a href='http://google.com/?f&amp;q=b'>tesT</a></div>", "overwrite":true}}
