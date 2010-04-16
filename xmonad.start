@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Default Apps to run
+# emacs & 
+# gnome-terminal -e screen &
+# firefox &
+
+# Composite Manager (to make transparent windows)
+xcompmgr &
+
+# Override ugly x cursor
+xsetroot -cursor_name left_ptr
+
+export WINDOW_MANAGER=xmonad
+gnome-session
