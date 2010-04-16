@@ -13,12 +13,12 @@
 (column-number-mode 1)
 
 ;; Disable some ui
-(menu-bar-mode 0)
-(scroll-bar-mode 0)
-(tool-bar-mode 0)
+;;(menu-bar-mode 0)
+;;(scroll-bar-mode 0)
+;;(tool-bar-mode 0)
 
 ;; Set the font
-(set-face-attribute 'default nil :height 90)
+;;(set-face-attribute 'default nil :height 90)
 (set-face-background 'mode-line "black")
 (set-face-foreground 'mode-line "white")
 
@@ -38,8 +38,8 @@
 (setq auto-save-list-file-name  nil) 
 
 ;; Set default size
-(setq default-frame-alist 
-      (append (list '(width  . 80) '(height . 51)) default-frame-alist)) 
+;;(setq default-frame-alist 
+;;      (append (list '(width  . 80) '(height . 51)) default-frame-alist)) 
 
 ;; Use clipboard
 (setq x-select-enable-clipboard t) 
@@ -112,8 +112,8 @@
 (setq derl-cookie "completelysecure")
 (setq erl-nodename-cache (make-symbol "hndev@localhost.com"))
 
-(add-to-list 'load-path "/usr/local/share/wrangler/elisp")
-(require 'wrangler)
+;;(add-to-list 'load-path "/usr/local/share/wrangler/elisp")
+;;(require 'wrangler)
 
 ;; kill compilation buffer if no errors
 ;; (setq compilation-finish-function
