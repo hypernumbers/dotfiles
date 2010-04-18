@@ -3,6 +3,10 @@ import XMonad.Layout.ResizableTile
 import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
+import XMonad.Layout.PerWorkspace
+import XMonad.Layout.SimplestFloat
+import XMonad.Layout.SimpleDecoration
+import XMonad.Layout.NoBorders
 
 import Data.Monoid
 import System.Exit
@@ -117,8 +121,11 @@ myLayout = ResizableTall 1 (1/100) (0.42) [] ||| Full
 -- 'className' and 'resource' are used below.
 --
 myManageHook = composeAll
-    [ className =? "Gimp"           --> doFloat, 
+    [ -- Make fullscreen(flash) windows work
+      isFullscreen --> doFullFloat,
+      className =? "Gimp"           --> doFloat, 
       className =? "Skype"          --> doFloat,
+      className =? "Synaptic"       --> doFloat, 
       -- Firefox's Download Manager
       resource  =? "Download"       --> doFloat, 
       resource  =? "Do"             --> doIgnore,
@@ -149,6 +156,6 @@ defaults = defaultConfig {
         mouseBindings      = myMouseBindings,
  
       -- hooks, layouts
-        layoutHook         = avoidStruts ( myLayout ),
+        layoutHook         = onWorkspace "4" simplestFloat $ avoidStruts ( myLayout ),
         logHook            = myLogHook
     }

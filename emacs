@@ -1,3 +1,5 @@
+;; -*- Mode: Emacs-Lisp -*-
+;; -*- lisp -*-
 (add-to-list 'load-path "~/.emacs_lib") 
 
 (require 'http-twiddle)
@@ -37,10 +39,6 @@
 (setq make-backup-files         nil) 
 (setq auto-save-list-file-name  nil) 
 
-;; Set default size
-;;(setq default-frame-alist 
-;;      (append (list '(width  . 80) '(height . 51)) default-frame-alist)) 
-
 ;; Use clipboard
 (setq x-select-enable-clipboard t) 
 (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
@@ -70,10 +68,10 @@
 (color-theme-midnight)
 
 ;; Espresso-mode for javascript
-(autoload #'espresso-mode "espresso" "Start espresso-mode" t)
+(autoload 'espresso-mode "espresso" "Start espresso-mode" t)
+
 (add-to-list 'auto-mode-alist '("\\.js$" . espresso-mode))
 (add-to-list 'auto-mode-alist '("\\.json$" . espresso-mode))
-
 (add-to-list 'auto-mode-alist '("\\.tpl$" . html-mode))
 
 ;; CSS color values colored by themselves
@@ -89,6 +87,10 @@
   (font-lock-add-keywords nil hexcolour-keywords))
 
 (add-hook 'css-mode-hook 'hexcolour-add-to-font-lock)
+
+(require 'flymake-jslint)
+(add-hook 'javascript-mode-hook
+          '(lambda () (flymake-mode t)))
 
 ;; Erlware-mode for erlang
 (setq load-path (cons "~/.emacs_lib/erlware-mode" load-path))
