@@ -109,7 +109,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
  
 -- which denotes layout choice.
 --
-myLayout = ResizableTall 1 (1/100) (0.42) [] ||| Full
+myLayout = ResizableTall 1 (1/100) (0.45) [] ||| Full
 
 -- Ignore or float by default some windows
 -- 
@@ -123,9 +123,13 @@ myLayout = ResizableTall 1 (1/100) (0.42) [] ||| Full
 myManageHook = composeAll
     [ -- Make fullscreen(flash) windows work
       isFullscreen --> doFullFloat,
+
       className =? "Gimp"           --> doFloat, 
       className =? "Skype"          --> doFloat,
       className =? "Synaptic"       --> doFloat, 
+      className =? "Nautilus"       --> doFloat, 
+      className =? "VirtualBox"     --> doFloat, 
+
       -- Firefox's Download Manager
       resource  =? "Download"       --> doFloat, 
       resource  =? "Do"             --> doIgnore,
@@ -156,6 +160,6 @@ defaults = defaultConfig {
         mouseBindings      = myMouseBindings,
  
       -- hooks, layouts
-        layoutHook         = onWorkspace "4" simplestFloat $ avoidStruts ( myLayout ),
+        layoutHook         = avoidStruts ( myLayout ),
         logHook            = myLogHook
     }
