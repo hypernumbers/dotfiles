@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# sudo apt-get install xmonad xcompmgr
 # in /usr/share/xsessions/xmonad.desktop 
 # change Exec to /home/me/.xmonad.start
 
