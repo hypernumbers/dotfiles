@@ -280,4 +280,5 @@
 
 (require 'flymake-jslint)
 (add-hook 'js2-mode-hook
+          'my-js2-mode-hook
           '(lambda () (flymake-mode t)))

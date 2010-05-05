@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# in /usr/share/xsessions/xmonad.desktop 
+# change Exec to /home/me/.xmonad.start
+
 # Default Apps to run
 # emacs & 
 # gnome-terminal -e screen &
