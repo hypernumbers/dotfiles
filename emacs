@@ -4,11 +4,29 @@
 (add-to-list 'load-path "~/.emacs_lib") 
 (add-to-list 'load-path "~/.emacs_lib/js2mode") 
 
+;;(autoload 'espresso-mode "espresso")
+(autoload 'moz-minor-mode "moz" "Mozilla Minor and Inferior Mozilla Modes" t)
+
+(require 'org-install)
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
+
+(setq org-agenda-files (list "~/org/work.org"
+                             "~/org/sideprojects.org" 
+                             "~/org/personal.org"))
+
+
+(require 'rainbow-mode)
 (require 'http-twiddle)
 
 ;; Save sessions and stuff 
 (desktop-load-default)
 (desktop-save-mode 1)
+
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
 
 ;; Enable modes
 (ido-mode 1)
@@ -48,11 +66,15 @@
 
 ;; Use spaces to indent, 4 by default.
 (setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
+(setq-default tab-width 2)
+(setq tab-width 2)
+(setq c-basic-indent 2)
+(setq espresso-indent-level 2)
+(setq js2-indent-level 2)
 
 ;; Fancy auto complete box
 (require 'auto-complete)
-(global-auto-complete-mode 1)
+;(global-auto-complete-mode 1)
 (setq ac-dwim t)
 (setq ac-auto-start t)
 (setq-default ac-sources '(ac-source-abbrev ac-source-words-in-buffer))
@@ -62,7 +84,7 @@
 (set-face-foreground 'ac-selection-face "gray90")
 (set-face-background 'ac-completion-face "LightSkyBlue4")
 (set-face-foreground 'ac-completion-face "gray12")
-(auto-complete-mode 1)
+;(auto-complete-mode 1)
 
 ;; Make pretty colours
 (add-to-list 'load-path "~/.emacs_lib/color-theme-6.6.0") 
@@ -72,34 +94,14 @@
 
 ;; Espresso-mode for javascript
 (autoload 'js2-mode "js2-mode" nil t)
+;;(add-to-list 'auto-mode-alist '("\\.js$" . espresso-mode))
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-
-(autoload 'espresso-mode "espresso")
-
-;(autoload 'espresso-mode "espresso" "Start espresso-mode" t)
-
-;; (add-to-list 'auto-mode-alist '("\\.js$" . espresso-mode))
-;; (add-to-list 'auto-mode-alist '("\\.json$" . espresso-mode))
-;; (add-to-list 'auto-mode-alist '("\\.tpl$" . html-mode))
-
-;; CSS color values colored by themselves
-;; http://xahlee.org/emacs/emacs_html.html
-(defvar hexcolour-keywords
-  '(("#[abcdef[:digit:]]\\{6\\}"
-     (0 (put-text-property
-         (match-beginning 0)
-         (match-end 0)
-         'face (list :background (match-string-no-properties 0)))))))
-
-(defun hexcolour-add-to-font-lock ()
-  (font-lock-add-keywords nil hexcolour-keywords))
-
-(add-hook 'css-mode-hook 'hexcolour-add-to-font-lock)
 
 ;; Erlware-mode for erlang
 (setq load-path (cons "~/.emacs_lib/erlware-mode" load-path))
 (require 'erlang-start)
 
+(add-to-list 'auto-mode-alist '("\\.escript?$" . erlang-mode))
 (add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
 (add-to-list 'auto-mode-alist '("\\.hrl?$" . erlang-mode))
 (add-to-list 'auto-mode-alist '("\\.yrl?$" . erlang-mode))
@@ -115,62 +117,8 @@
 (add-to-list 'load-path "~/.emacs_lib/distel/elisp")
 (require 'distel)
 (distel-setup)
-(setq derl-cookie "completelysecure")
-(setq erl-nodename-cache (make-symbol "hndev@localhost.com"))
-
-;;(add-to-list 'load-path "/usr/local/share/wrangler/elisp")
-;;(require 'wrangler)
-
-;; kill compilation buffer if no errors
-;; (setq compilation-finish-function
-;;       (lambda (buf str)        
-;;         (if (string-match "Termination Status: ok" (buffer-string))
-;;             (kill-buffer-and-window)
-;;           ())))
-
-(defun show-onelevel ()
- "show entry and children in outline mode"
- (interactive)
- (show-entry)
- (show-children))
-
-(defun my-outline-bindings ()
- "sets shortcut bindings for outline minor mode"
- (interactive)
- (local-set-key [C-up] 'outline-previous-visible-heading)
- (local-set-key [C-down] 'outline-next-visible-heading)
- (local-set-key [C-left] 'hide-subtree)
- (local-set-key [C-right] 'show-onelevel))
-
-(add-hook
- 'outline-minor-mode-hook
- 'my-outline-bindings)
-
-(add-hook
- 'erlang-mode-hook
- '(lambda ()
-   (outline-minor-mode)
-   (setq outline-regexp
-         (concat "^-?" erlang-atom-regexp "\\s *("))))
-
-
-;; Testing Junk
-(defconst erlang-keywords 
-  (sort 
-   (list "bumkins" ) #'(lambda (a b) (> (length a) (length b)))))
-
-(defvar ac-source-erlang
-  '((candidates
-     . (lambda ()
-         (all-completions ac-target erlang-keywords))))
-  "Source for erlang keywords.")
-
-(add-hook 'erlang-mode-hook
-          (lambda ()
-            (make-local-variable 'ac-sources)
-            (setq ac-sources '(ac-source-erlang 
-                               ac-source-abbrev 
-                               ac-source-words-in-buffer))))
+(setq derl-cookie "abc")
+(setq erl-nodename-cache (make-symbol "dale@localhost"))
 
 (defun build-hypernumbers ()
   (interactive)
@@ -180,19 +128,21 @@
   (goto-char (point-max))
   (other-window -1))
 
-(global-set-key [f12] 'build-hypernumbers)
+;(global-set-key [f12] 'build-hypernumbers)
 
-
-(defun build-erlangotp ()
+(defun rebar-compile ()
   (interactive)
-  (cd "/home/dale/lib/erlangotp.com/")
-  (compile "./ctrl build")
-  (other-window 1)
-  (goto-char (point-max))
-  (other-window -1))
+  (cd "/home/dale/lib/settee/_attachments/setteed")
+  (compile "rebar compile"))
 
-(global-set-key [f11] 'build-erlangotp)
+(global-set-key [f11] 'rebar-compile)
 
+(defun couchapp-push ()
+  (interactive)
+  (cd "/home/dale/lib/settee/")
+  (compile "couchapp push"))
+
+(global-set-key [f12] 'couchapp-push)
 
 (defun my-js2-indent-function ()
   (interactive)
@@ -274,11 +224,58 @@
     (js2-highlight-vars-mode))
   (message "My JS2 hook"))
 
-;; (add-hook 'js2-mode-hook 
-;;           'my-js2-mode-hook
-;;           )
+(add-hook 'js2-mode-hook 
+          'my-js2-mode-hook
+          )
 
 (require 'flymake-jslint)
-(add-hook 'js2-mode-hook
-          'my-js2-mode-hook
-          '(lambda () (flymake-mode t)))
+;; (add-hook 'js2-mode-hook
+;;           'my-js2-mode-hook
+;;           '(lambda () (flymake-mode t)))
+
+;; Example - you may want to add hooks for your own modes.
+;; I also add this to python-mode when doing django development.
+;; (add-hook 'html-mode-hook 'auto-reload-firefox-on-after-save-hook)
+;; (add-hook 'css-mode-hook 'auto-reload-firefox-on-after-save-hook)
+;; (add-hook 'js2-mode-hook 'auto-reload-firefox-on-after-save-hook)
+
+;; (define-minor-mode moz-save-mode
+;;   "Moz Save Reload Minor Mode"
+;;   nil " Reload" nil
+;;   (if moz-save-mode
+;;       Edit hook buffer-locally.
+;;       (add-hook 'post-command-hook 'moz-reload nil t)
+;;     (remove-hook 'post-command-hook 'moz-reload t)))
+
+;; (defun auto-reload-firefox-on-after-save-hook ()         
+;;   (add-hook 'after-save-hook
+;;             '(lambda ()
+;;                (interactive)
+;;                (comint-send-string (inferior-moz-process)
+;;                                    "BrowserReload();"))
+;;             'append 'local)) buffer-local
+
+;;; Usage
+;; Run M-x moz-reload-mode to switch moz-reload on/off in the
+;; current buffer.
+;; When active, every change in the buffer triggers Firefox
+;; to reload its current page.
+(require 'moz)
+
+(define-minor-mode moz-reload-mode
+  "Moz Reload Minor Mode"
+  nil " Reload" nil
+  (if moz-reload-mode
+      (add-hook 'after-save-hook 'moz-firefox-reload nil t)
+    (remove-hook 'after-save-hook 'moz-firefox-reload t)))
+
+(defun moz-firefox-reload ()
+  (comint-send-string (inferior-moz-process) "BrowserReload();"))
+
+;; (defun moz-reload ()
+;;   (when (buffer-saved)
+;;     (moz-firefox-reload)))
+
+(load "php-mode")
+(add-to-list 'auto-mode-alist
+     	     '("\\.php[34]?\\'\\|\\.phtml\\'" . php-mode))

@@ -1,3 +1,6 @@
 caption always "%{wK}%?%-Lw%?%{bw}%n*%f %t%?(%u)%?%{wK}%?%+Lw%? %= %{= Kw}%110`%109`%111`"
 
+defscrollback 50000
+
 shell zsh
+
